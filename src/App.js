@@ -1,11 +1,9 @@
-import Map, { Layer, Source } from "react-map-gl";
+import Map from "react-map-gl";
 import DeckGL from "@deck.gl/react";
-import { LineLayer } from "@deck.gl/layers";
 import { dev } from "./constants";
 import "./App.css";
 import wildfire from "./wildfire.json";
-import { useState } from "react";
-import { HeatmapLayer, IconLayer } from "deck.gl";
+import { HeatmapLayer } from "deck.gl";
 
 function App() {
   const INITIAL_VIEW_STATE = {
@@ -18,9 +16,9 @@ function App() {
 
   const data = wildfire; //[{ sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781] }];
 
-  const ICON_MAPPING = {
-    marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
-  };
+  // const ICON_MAPPING = {
+  //   marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
+  // };
 
   const layer = new HeatmapLayer({
     id: "heatmapLayer",
@@ -30,16 +28,16 @@ function App() {
     aggregation: "SUM",
   });
 
-  const tooltip = (object) => {
-    if (object)
-      return {
-        html: `<h2>hello</h2><div>world</div>`,
-        style: {
-          backgroundColor: "#f00",
-          fontSize: "0.8em",
-        },
-      };
-  };
+  // const tooltip = (object) => {
+  //   if (object)
+  //     return {
+  //       html: `<h2>hello</h2><div>world</div>`,
+  //       style: {
+  //         backgroundColor: "#f00",
+  //         fontSize: "0.8em",
+  //       },
+  //     };
+  // };
 
   return (
     <DeckGL initialViewState={INITIAL_VIEW_STATE} controller={true} layers={layer} /*getTooltip={tooltip}*/>
